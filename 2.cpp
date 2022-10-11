@@ -25,6 +25,11 @@ void display(void)
     /* clear all pixels  */
     glClear(GL_COLOR_BUFFER_BIT);
 
+    glLoadIdentity();
+
+	// Especifica posição do observador e do alvo
+    gluLookAt(0.0, 0.0, 30.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+
     /* draw white polygon (rectangle) with corners at
      * (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
      */
@@ -37,11 +42,35 @@ void display(void)
     // glEnd();
 
     // glTranslatef(0,0,-30);
-    gluLookAt(0.0, 0.0, 30.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 
-    glBegin(GL_POINTS);
+  
+
+   glBegin(GL_LINES);
     glColor4f(1.0,1.0,1.0,1.0);
+
+      glVertex3f(0.033f, 100.0f, 29.0f);
+      glVertex3f(0.033f, -100.0f, 29.0f);
+    // glColor4f(1.0,.0,.0,1.0);
+
+    //   glVertex3f(0.0f, 0.0f, 0.0f);
+    //   glVertex3f(.5f, .5f, 2.0f);
+   glEnd();
+
+   glBegin(GL_LINES);
+    glColor4f(1.0,1.0,1.0,1.0);
+
+      glVertex3f(100.0f, .1f, 29.0f);
+      glVertex3f(-100.0f, .1f, 29.0f);
+    // glColor4f(1.0,.0,.0,1.0);
+
+    //   glVertex3f(0.0f, 0.0f, 0.0f);
+    //   glVertex3f(.5f, .5f, 2.0f);
+   glEnd();
+
+
+  glBegin(GL_POINTS);
+    glColor4f(1.0,0.0,0.0,1.0);
 
       glVertex3f(1.0f, 3.0f, 0.0f);
     // glColor4f(1.0,.0,.0,1.0);
@@ -49,7 +78,6 @@ void display(void)
     //   glVertex3f(0.0f, 0.0f, 0.0f);
     //   glVertex3f(.5f, .5f, 2.0f);
    glEnd();
-
     /* don't wait!
      * start processing buffered OpenGL routines
      */
@@ -62,7 +90,11 @@ void init(void)
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
     gluPerspective(30, 1.333, 1.0, 100.0); 
-    glMatrixMode( GL_MODELVIEW );
+
+    glMatrixMode(GL_MODELVIEW);
+	// Inicializa sistema de coordenadas do modelo
+	
+
     glLoadIdentity();
     glClear( GL_COLOR_BUFFER_BIT );
 }
